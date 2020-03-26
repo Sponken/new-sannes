@@ -1,0 +1,18 @@
+{
+  "name": "newsannes",
+  "version": "0.0.0",
+  "description": "new sannes with RDC",
+  "main": "src/index.js",
+  "repository": "i",
+  "author": "spoops",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "parcel -p 3000 watch public/index.html"
+  },
+  "dependencies": {
+    "parcel-bundler": "^1.12.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
