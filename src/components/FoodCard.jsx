@@ -12,6 +12,7 @@ const FoodCard = ({
                 <DigitText.Heading5 text={title} bold/>
                 <DigitText.Heading5 text={price} bold/>
             </DigitLayout.Row>
+        {ingredients.join(", ")}
         </DigitDesign.Card>
 
 }

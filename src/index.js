@@ -8,7 +8,7 @@ ReactDOM.render(
         <DigitHeader
             title="Sannes"
             renderMain={() => (
-                <FoodCard title="Pizza" price="10kr"/>
+                <FoodCard title="Pizza" price="10kr" ingredients={["Skinka", "lök", "jalapeño", "kyckling", "köttfärs", "bacon", "oxfilé", "mozzarellaost", "stark vitlökssås"]}/>
             )}
         />
     </DigitProviders>,
