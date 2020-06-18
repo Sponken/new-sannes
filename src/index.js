@@ -1,4 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import FoodCard from "./components/FoodCard.jsx"
+import {DigitButton, DigitHeader, DigitProviders} from "@cthit/react-digit-components";
 
-ReactDOM.render(<h1>hej</h1>, document.getElementById("root"));
+ReactDOM.render(
+    <DigitProviders>
+        <DigitHeader
+            title="Sannes"
+            renderMain={() => (
+                <FoodCard title="Pizza" price="10kr"/>
+            )}
+        />
+    </DigitProviders>,
+    document.getElementById("root")
+);
