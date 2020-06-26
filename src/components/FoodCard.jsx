@@ -7,7 +7,7 @@ const FoodCard = ({
                       ingredients
                   }) => {
     // TODO: fixa spacing mellan namn och pris.
-    return <DigitDesign.Card size={{width:"320px", height:"190px"}}>
+    return <DigitDesign.Card size={{width:"300px", height:"190px"}}>
             <DigitLayout.Row>
                 <DigitText.Heading5 text={title} bold/>
                 <DigitText.Heading5 text={price} bold/>
