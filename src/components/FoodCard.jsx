@@ -6,11 +6,10 @@ const FoodCard = ({
                       price,
                       ingredients
                   }) => {
-    // TODO: fixa spacing mellan namn och pris.
     return <DigitDesign.Card size={{width:"300px", height:"190px"}}>
-            <DigitLayout.Row>
+            <DigitLayout.Row justifyContent = "space-between">
                 <DigitText.Heading5 text={title} bold/>
-                <DigitText.Heading5 text={price} bold/>
+                <DigitText.Heading5 text={price+"kr"} bold/>
             </DigitLayout.Row>
         {ingredients.join(", ")}
         </DigitDesign.Card>
