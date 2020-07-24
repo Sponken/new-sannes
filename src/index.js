@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom'
 import FoodCard from "./components/FoodCard.jsx"
 import {DigitLayout, DigitHeader, DigitProviders} from "@cthit/react-digit-components";
 import FoodGroup from "./components/FoodGroup";
+import Menu from "./components/Menu";
+
+const id = 0
 
 const testFood = {
     title: "pizza",
@@ -10,14 +13,16 @@ const testFood = {
     ingredients: ["Skinka", "lök", "jalapeño", "kyckling", "köttfärs", "bacon", "oxfilé", "mozzarellaost", "stark vitlökssås"]
 }
 
-const testGroup = {
+const testGroup1 = {
     groupTitle: "Testgroup",
-    foods: [Array(5).fill(testFood)]
+    foods: Array(3).fill(testFood)
 }
 
-const testMenu = {
-    groups: [Array(3).fill(testGroup)]
+const testGroup2 = {
+    groupTitle: "Testgroup2",
+    foods: Array(7).fill(testFood)
 }
+const testMenu = [testGroup1, testGroup2]
 
 ReactDOM.render(
     <DigitProviders>
@@ -25,11 +30,9 @@ ReactDOM.render(
             title="Sannes"
             renderMain={() => (
                 <div>
-                    <FoodGroup foods={Array(5).fill(testFood)} groupTitle="Foodgroup test"/>
-                    <FoodGroup foods={Array(5).fill(testFood)} groupTitle="Foodgroup test"/>
+                    <Menu foodGroups={testMenu}/>
                 </div>
-            )
-            }
+            )}
         />
     </DigitProviders>,
     document.getElementById("root")
