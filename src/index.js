@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import FoodCard from "./components/FoodCard.jsx"
-import {DigitLayout, DigitHeader, DigitProviders} from "@cthit/react-digit-components";
-import FoodGroup from "./components/FoodGroup";
+import Filter from "./components/Filter";
+import {DigitHeader, DigitProviders} from "@cthit/react-digit-components";
 import Menu from "./components/Menu";
 
 const id = 0
@@ -24,12 +23,22 @@ const testGroup2 = {
 }
 const testMenu = [testGroup1, testGroup2]
 
+const testGroupTitles = ["Some group", "Another group"]
+
+const groupTitles = () => {
+    const result = []
+    testMenu.forEach(g => result.push(g.groupTitle))
+    return result
+}
+
+
 ReactDOM.render(
     <DigitProviders>
         <DigitHeader
             title="Sannes"
             renderMain={() => (
                 <div>
+                    <Filter groupNames={groupTitles()}/>
                     <Menu foodGroups={testMenu}/>
                 </div>
             )}
