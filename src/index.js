@@ -23,7 +23,7 @@ const testGroup2 = {
 }
 const testMenu = [testGroup1, testGroup2]
 
-const testGroupTitles = ["Some group", "Another group"]
+const pref = ["Veg", "Stark", "Inbakad"]
 
 const groupTitles = () => {
     const result = []
@@ -31,6 +31,29 @@ const groupTitles = () => {
     return result
 }
 
+const options = [{
+    text: "The Dark Knight Rises",
+    value: "the_dark"
+}, {
+    text: "Princess Mononoke",
+    value: "princess"
+}, {
+    text: "Aliens",
+    value: "aliens"
+}, {
+    text: "Oldboy",
+    value: "oldboy"
+}, {
+    text: "Once Upon a Time in America",
+    value: "once"
+}, {
+    text: "Witness for the Prosecution",
+    value: "Witness"
+}, {
+    text: "Das Boot",
+    value: "das",
+    disabled: true
+}];
 
 ReactDOM.render(
     <DigitProviders>
@@ -38,7 +61,7 @@ ReactDOM.render(
             title="Sannes"
             renderMain={() => (
                 <div>
-                    <Filter groupNames={groupTitles()}/>
+                    <Filter groupNames={groupTitles()} prefNames={pref} ingredients={options}/>
                     <Menu foodGroups={testMenu}/>
                 </div>
             )}
