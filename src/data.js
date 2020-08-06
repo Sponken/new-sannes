@@ -1,5 +1,5 @@
 const id = 0
-const testFood = {
+export const testFood = {
     title: "pizza",
     price: 10,
     ingredients: ["Skinka", "lök", "jalapeño", "kyckling", "köttfärs", "bacon", "oxfilé", "mozzarellaost", "stark vitlökssås"]
@@ -19,8 +19,8 @@ export const pref = ["Veg", "Stark", "Inbakad"]
 export const groupTitles = testMenu.map(g => g.groupTitle)
 
 export const options = [{
-    text: "The Dark Knight Rises",
-    value: "the_dark"
+    text: "lök",
+    value: "lök"
 }, {
     text: "Princess Mononoke",
     value: "princess"
