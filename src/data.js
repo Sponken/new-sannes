@@ -16,11 +16,8 @@ export const testMenu = [testGroup1, testGroup2]
 
 export const pref = ["Veg", "Stark", "Inbakad"]
 
-export const groupTitles = () => {
-    const result = []
-    testMenu.forEach(g => result.push(g.groupTitle))
-    return result
-}
+export const groupTitles = testMenu.map(g => g.groupTitle)
+
 export const options = [{
     text: "The Dark Knight Rises",
     value: "the_dark"

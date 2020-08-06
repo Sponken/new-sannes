@@ -3,9 +3,9 @@ import {DigitLayout, DigitText} from "@cthit/react-digit-components";
 import FoodCard from "./FoodCard";
 
 const FoodGroup = ({
-                      foods,
-                      groupTitle,
-                  }) => {
+                       foods,
+                       groupTitle,
+                   }) => {
     const foodCards = foods.map(f => <FoodCard key={f.title} title={f.title} price={f.price}
                                                ingredients={f.ingredients}/>)
     return <div style={{
