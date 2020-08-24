@@ -18,8 +18,8 @@ const Filter = ({
                     minPrice,
                     maxPrice,
                     ingredients,
-                    addIngredients,
-                    removeIngredients
+                    wantedIngredients,
+                    unwantedIngredients
                 }) => {
 
     return <DigitDesign.Card size={{width: '600px'}}>
@@ -34,8 +34,8 @@ const Filter = ({
         <DigitDesign.CardBody>
             <DigitText.Heading5 text="Ingredienser"/>
             <DigitLayout.Row>
-                <IngredientList ingredients={ingredients} chosenIngredients={addIngredients}/>
-                <IngredientList ingredients={ingredients} chosenIngredients={removeIngredients}/>
+                <IngredientList ingredients={ingredients} chosenIngredients={wantedIngredients}/>
+                <IngredientList ingredients={ingredients} chosenIngredients={unwantedIngredients}/>
             </DigitLayout.Row>
         </DigitDesign.CardBody>
         <DigitDesign.CardBody>
@@ -72,17 +72,19 @@ const IngredientList = ({ingredients, chosenIngredients}) => {
         }
     })
 
-    const ingredientValues = chosenIngredients.map(g => g.toLowerCase())
+    const ingredientValues = chosenIngredients.value.map(g => g.toLowerCase())
 
-    return <DigitAutocompleteSelectMultiple options={ingredientOptions} value={ingredientValues}/>
+    return <DigitAutocompleteSelectMultiple options={ingredientOptions} value={ingredientValues}
+                                            onChange={e => chosenIngredients.setter(e.target.value)}/>
 }
 
 const PriceRange = ({min, max}) => {
     return <DigitLayout.Row alignItems='center'>
-        <DigitTextField numbersOnly value={min} upperLabel="Min"/>
+        <DigitTextField numbersOnly value={min.value} upperLabel="Min" onChange={e => min.setter(e.target.value)}/>
         <DigitText.Heading5 text='-'/>
-        <DigitTextField numbersOnly value={max} upperLabel="Max"/>
+        <DigitTextField numbersOnly value={max.value} upperLabel="Max" onChange={e => max.setter(e.target.value)}/>
     </DigitLayout.Row>
 }
+
 
 export default Filter
