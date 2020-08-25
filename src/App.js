@@ -11,8 +11,8 @@ const App = () => {
     const [wantedIngredients, setWantedIngredients] = useState([]);
     const [unwantedIngredients, setUnwantedIngredients] = useState([]);
 
-    const [foodGroups, setFoodGroups] = useState(["Testgroup"]);
-    const [foodPref, setFoodPref] = useState(["Veg"]);
+    const [foodGroups, setFoodGroups] = useState([])
+    const [foodPref, setFoodPref] = useState([]);
 
 
     return <DigitProviders>
@@ -20,8 +20,8 @@ const App = () => {
             title="Sannes"
             renderMain={() => (
                 <DigitLayout.Column alignItems='center'>
-                    <Filter groupNames={groupTitles} chosenFoodGroups={foodGroups} prefNames={pref}
-                            chosenFoodPref={{value: foodPref, setter: setFoodGroups}} ingredients={testFood.ingredients}
+                    <Filter groupNames={groupTitles} chosenFoodGroups={{value: foodGroups, setter: setFoodGroups}} prefNames={pref}
+                            chosenFoodPref={{value: foodPref, setter: setFoodPref}} ingredients={testFood.ingredients}
                             minPrice={{value: minPrice, setter: setMinPrice}}
                             maxPrice={{value: maxPrice, setter: setMaxPrice}}
                             wantedIngredients={{value: wantedIngredients, setter: setWantedIngredients}}
