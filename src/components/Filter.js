@@ -13,7 +13,6 @@ const Filter = ({
                     chosenFoodGroups,
                     prefNames,
                     chosenFoodPref,
-                    minPrice,
                     maxPrice,
                     ingredients,
                     wantedIngredients,
@@ -37,8 +36,9 @@ const Filter = ({
             </DigitLayout.Row>
         </DigitDesign.CardBody>
         <DigitDesign.CardBody>
-            <DigitText.Heading5 text="Pris Interval"/>
-            <PriceRange min={minPrice} max={maxPrice}/>
+            <DigitText.Heading5 text="Max"/>
+            <DigitTextField numbersOnly value={maxPrice.value} upperLabel="Max"
+                            onChange={e => maxPrice.setter(e.target.value)}/>
         </DigitDesign.CardBody>
     </DigitDesign.Card>
 }
@@ -71,14 +71,5 @@ const IngredientList = ({ingredients, chosenIngredients}) => {
     return <DigitAutocompleteSelectMultiple options={ingredientOptions} value={ingredientValues}
                                             onChange={e => chosenIngredients.setter(e.target.value)}/>
 }
-
-const PriceRange = ({min, max}) => {
-    return <DigitLayout.Row alignItems='center'>
-        <DigitTextField numbersOnly value={min.value} upperLabel="Min" onChange={e => min.setter(e.target.value)}/>
-        <DigitText.Heading5 text='-'/>
-        <DigitTextField numbersOnly value={max.value} upperLabel="Max" onChange={e => max.setter(e.target.value)}/>
-    </DigitLayout.Row>
-}
-
 
 export default Filter
