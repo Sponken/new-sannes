@@ -21,7 +21,7 @@ const App = () => {
             renderMain={() => (
                 <DigitLayout.Column alignItems='center'>
                     <Filter groupNames={groupTitles} chosenFoodGroups={foodGroups} prefNames={pref}
-                            chosenFoodPref={foodPref} ingredients={testFood.ingredients}
+                            chosenFoodPref={{value: foodPref, setter: setFoodGroups}} ingredients={testFood.ingredients}
                             minPrice={{value: minPrice, setter: setMinPrice}}
                             maxPrice={{value: maxPrice, setter: setMaxPrice}}
                             wantedIngredients={{value: wantedIngredients, setter: setWantedIngredients}}

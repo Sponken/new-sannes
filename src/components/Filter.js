@@ -7,8 +7,6 @@ import {
     DigitLayout,
     DigitTextField
 } from "@cthit/react-digit-components";
-import {testFood} from "../data";
-
 
 const Filter = ({
                     groupNames,
@@ -55,8 +53,9 @@ const FoodGroupFilter = ({groupNames, chosenFoodGroups}) => {
 }
 
 const FoodPrefFilter = ({prefNames, chosenFoodPref}) => {
-    const groupButtons = prefNames.map(n => <DigitButton outlined={!chosenFoodPref.includes(n)}
-                                                         raised={chosenFoodPref.includes(n)} primary text={n}/>)
+    const groupButtons = prefNames.map(n => <DigitButton outlined={!chosenFoodPref.value.includes(n)}
+                                                         raised={chosenFoodPref.value.includes(n)} primary text={n}
+                                                         onCLick={() => chosenFoodPref.setter(chosenFoodPref.value.push(n))}/>)
     return <div>
         {groupButtons}
     </div>
