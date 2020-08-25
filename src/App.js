@@ -5,7 +5,6 @@ import Menu from "./components/Menu";
 import {groupTitles, options, pref, testMenu, testFood} from "./data";
 
 const App = () => {
-    const [minPrice, setMinPrice] = useState();
     const [maxPrice, setMaxPrice] = useState();
 
     const [wantedIngredients, setWantedIngredients] = useState([]);
@@ -22,7 +21,6 @@ const App = () => {
                 <DigitLayout.Column alignItems='center'>
                     <Filter groupNames={groupTitles} chosenFoodGroups={{value: foodGroups, setter: setFoodGroups}} prefNames={pref}
                             chosenFoodPref={{value: foodPref, setter: setFoodPref}} ingredients={testFood.ingredients}
-                            minPrice={{value: minPrice, setter: setMinPrice}}
                             maxPrice={{value: maxPrice, setter: setMaxPrice}}
                             wantedIngredients={{value: wantedIngredients, setter: setWantedIngredients}}
                             unwantedIngredients={{value: unwantedIngredients, setter: setUnwantedIngredients}}/>
