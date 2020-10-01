@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Filter from "./components/Filter";
 import {DigitHeader, DigitProviders, DigitLayout} from "@cthit/react-digit-components";
 import Menu from "./components/Menu";
-import {groupTitles, options, pref, testMenu, testFood} from "./data";
+import {groupTitles, options, pref, testMenu, testFood} from "./mockData";
 
 const App = () => {
     const [maxPrice, setMaxPrice] = useState();
