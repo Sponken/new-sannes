@@ -1,3 +1,4 @@
+import * as foods from "../data/foods.json"
 
 export const testFood = {
     title: "pizza",
@@ -17,4 +18,7 @@ export const testMenu = [testGroup1, testGroup2]
 export const pref = ["Veg", "Stark", "Inbakad"]
 
 export const groupTitles = testMenu.map(g => g.groupTitle)
+
+export const pastaMenu = [{groupTitle: "pasta", foods: foods.pastas}]
+
 
