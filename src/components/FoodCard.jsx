@@ -6,7 +6,6 @@ const FoodCard = ({
                       price,
                       ingredients
                   }) => {
-    console.log("title: " + title + "\nIngredients: " + ingredients)
     return <DigitDesign.Card size={{width: "300px", height: "240px"}}>
         <DigitDesign.CardBody>
             <DigitLayout.Row bottomPadding='20px' justifyContent="space-between">

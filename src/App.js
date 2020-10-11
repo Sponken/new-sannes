@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Filter from "./components/Filter";
 import {DigitHeader, DigitProviders, DigitLayout} from "@cthit/react-digit-components";
 import Menu from "./components/Menu";
-import {groupTitles, options, pref, testMenu, testFood, nonPizzaGroups} from "./mockData";
+import {groupTitles, options, pref, testMenu, testFood, nonPizzaGroups, pizzaGroups} from "./mockData";
 
 const App = () => {
     const [maxPrice, setMaxPrice] = useState();
@@ -26,6 +26,7 @@ const App = () => {
                             maxPrice={{value: maxPrice, setter: setMaxPrice}}
                             wantedIngredients={{value: wantedIngredients, setter: setWantedIngredients}}
                             unwantedIngredients={{value: unwantedIngredients, setter: setUnwantedIngredients}}/>
+                    <Menu foodGroups={pizzaGroups}/>
                     <Menu foodGroups={nonPizzaGroups}/>
                 </DigitLayout.Column>
             )}
