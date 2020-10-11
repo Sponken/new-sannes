@@ -44,13 +44,11 @@ const Filter = ({
 }
 
 const ToggleFilterButtons = ({options, chosen}) => {
-    console.log(chosen.value)
     const groupButtons = options.map(n => <DigitButton outlined={!chosen.value.includes(n)}
                                                        raised={chosen.value.includes(n)} primary text={n}
                                                        onClick={() => {
                                                            chosen.value.includes(n) ? chosen.setter(chosen.value.filter(item => item !== n)) : chosen.setter([...chosen.value, n])
                                                        }}/>)
-    console.log(chosen.value)
     return <div>
         {groupButtons}
     </div>

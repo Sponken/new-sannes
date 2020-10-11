@@ -1,4 +1,4 @@
-import * as foods from "../data/foods.json"
+import foods from "../data/foods.json"
 
 export const testFood = {
     title: "pizza",
@@ -17,17 +17,18 @@ export const testMenu = [testGroup1, testGroup2]
 
 export const pref = ["Veg", "Stark", "Inbakad"]
 
-export const groupTitles = testMenu.map(g => g.groupTitle)
 
 export const pastaMenu = [{groupTitle: "pasta", foods: foods.pastas}]
 
 let getNonPizzaGroups = () => {
     let output = []
+
     Object.entries(foods).map(([key, value]) => {
-        if (!["alias", "pizzas", "default"].includes(key)) {
+        if (!["alias", "pizzas"].includes(key)) {
             output.push({groupTitle: key, foods: value})
         }
     })
+    console.log(output)
     return output
 }
 
@@ -36,3 +37,5 @@ export const nonPizzaGroups = getNonPizzaGroups()
 export const pizzaGroups = Object.entries(foods.pizzas).map(([key, value]) => {
     return {groupTitle: "Pizzagrupp " + key, foods: value}
 })
+
+export const groupTitles = ["Pizza",...getNonPizzaGroups().map(g => g.groupTitle)]
