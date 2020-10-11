@@ -6,13 +6,14 @@ const FoodCard = ({
                       price,
                       ingredients
                   }) => {
-    return <DigitDesign.Card size={{width: "300px", height: "190px"}}>
+    console.log("title: " + title + "\nIngredients: " + ingredients)
+    return <DigitDesign.Card size={{width: "300px", height: "240px"}}>
         <DigitDesign.CardBody>
             <DigitLayout.Row bottomPadding='20px' justifyContent="space-between">
                 <DigitText.Heading5 text={title} bold/>
                 <DigitText.Heading5 text={price + "kr"} bold/>
             </DigitLayout.Row>
-            <DigitMarkdown markdownSource={ingredients.join(", ")}/>
+            <DigitMarkdown markdownSource={ingredients === undefined ? "" : ingredients.join(", ")}/>
         </DigitDesign.CardBody>
     </DigitDesign.Card>
 
