@@ -28,7 +28,6 @@ let getNonPizzaGroups = () => {
             output.push({groupTitle: key, foods: value})
         }
     })
-    console.log(output)
     return output
 }
 

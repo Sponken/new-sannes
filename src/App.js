@@ -13,10 +13,8 @@ const App = () => {
     const [chosenFoodGroups, setChosenFoodGroups] = useState(groupTitles)
     const [foodPref, setFoodPref] = useState([]);
 
-    let filteredNonPizzaGroups = filterGroups(nonPizzaGroups, chosenFoodGroups, maxPrice)
-    let filteredPizzaGroups = filterGroups(pizzaGroups, chosenFoodGroups, maxPrice)
-
-    console.log("Max price is: "+maxPrice)
+    let filteredNonPizzaGroups = filterGroups(nonPizzaGroups, chosenFoodGroups, maxPrice, wantedIngredients)
+    let filteredPizzaGroups = filterGroups(pizzaGroups, chosenFoodGroups, maxPrice, wantedIngredients)
 
     return <DigitProviders>
         <DigitHeader
@@ -40,21 +38,39 @@ const App = () => {
 }
 
 
-let filterGroups = (foodGroups, chosenFoodGroups, maxPrice) => {
+let filterGroups = (foodGroups, chosenFoodGroups, maxPrice, wantedIngredients) => {
     let filtered = []
 
+    // Nedan trollar bort pizza.
     filtered = foodGroups.filter(g => {
         return chosenFoodGroups.includes(g.groupTitle)
     })
 
-    //TODO Keep filtering on the other criteria
-    if(maxPrice != "")
-    filtered = filtered.map(g => {
-        return {groupTitle: g.groupTitle,
-            foods: g.foods.filter(foodItem => {
-                                    return foodItem.price <= maxPrice}
-                                    )}
-    })
+    console.log(filtered)
+
+    if (maxPrice !== "")
+        filtered = filtered.map(g => {
+            return {
+                groupTitle: g.groupTitle,
+                foods: g.foods.filter(foodItem => {
+                        return foodItem.price <= maxPrice
+                    }
+                )
+            }
+        })
+
+    //TODO: Continue filtrering, filtrera i menu?
+
+    /*filtered = filtered.map(g => {
+        return {
+            groupTitle: g.groupTitle,
+            foods: g.foods.filter(f => {
+                console.log(f.ingredients)
+                return wantedIngredients.every(i => f.ingredients.includes(i))
+            })
+        }
+    })*/
+
 
     return filtered
 }

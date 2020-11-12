@@ -1827,21 +1827,24 @@
       "type": "lasagna",
       "veg": false,
       "spicy": false,
-      "price": 85
+      "price": 85,
+      "ingredients": []
     },
     {
       "title": "lasagne mexicana",
       "type": "lasagna",
       "veg": false,
       "spicy": true,
-      "price": 90
+      "price": 90,
+      "ingredients": []
     },
     {
       "title": "lasagne gorgonzola",
       "type": "lasagna",
       "veg": false,
       "spicy": false,
-      "price": 90
+      "price": 90,
+      "ingredients": []
     }
   ]
 }
