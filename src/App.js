@@ -5,7 +5,7 @@ import Menu from "./components/Menu";
 import {groupTitles, pref, testFood, nonPizzaGroups, pizzaGroups} from "./mockData";
 
 const App = () => {
-    const [maxPrice, setMaxPrice] = useState();
+    const [maxPrice, setMaxPrice] = useState("");
 
     const [wantedIngredients, setWantedIngredients] = useState([]);
     const [unwantedIngredients, setUnwantedIngredients] = useState([]);
@@ -13,8 +13,10 @@ const App = () => {
     const [chosenFoodGroups, setChosenFoodGroups] = useState(groupTitles)
     const [foodPref, setFoodPref] = useState([]);
 
-    let filteredNonPizzaGroups = filterGroups(nonPizzaGroups, chosenFoodGroups)
-    console.log(filteredNonPizzaGroups)
+    let filteredNonPizzaGroups = filterGroups(nonPizzaGroups, chosenFoodGroups, maxPrice)
+    let filteredPizzaGroups = filterGroups(pizzaGroups, chosenFoodGroups, maxPrice)
+
+    console.log("Max price is: "+maxPrice)
 
     return <DigitProviders>
         <DigitHeader
@@ -27,7 +29,9 @@ const App = () => {
                             maxPrice={{value: maxPrice, setter: setMaxPrice}}
                             wantedIngredients={{value: wantedIngredients, setter: setWantedIngredients}}
                             unwantedIngredients={{value: unwantedIngredients, setter: setUnwantedIngredients}}/>
-                    <Menu foodGroups={pizzaGroups}/>
+                    {chosenFoodGroups.includes("Pizza")
+                        ? <Menu foodGroups={filteredPizzaGroups}/>
+                        : null}
                     <Menu foodGroups={filteredNonPizzaGroups}/>
                 </DigitLayout.Column>
             )}
@@ -36,17 +40,21 @@ const App = () => {
 }
 
 
-let filterGroups = (foodGroups, chosenFoodGroups) => {
+let filterGroups = (foodGroups, chosenFoodGroups, maxPrice) => {
     let filtered = []
 
-    foodGroups.map(g => {
-            if (chosenFoodGroups.includes(g.groupTitle)) {
-               filtered.push(g)
-            }
+    filtered = foodGroups.filter(g => {
+        return chosenFoodGroups.includes(g.groupTitle)
+    })
 
-        }
-    )
     //TODO Keep filtering on the other criteria
+    if(maxPrice != "")
+    filtered = filtered.map(g => {
+        return {groupTitle: g.groupTitle,
+            foods: g.foods.filter(foodItem => {
+                                    return foodItem.price <= maxPrice}
+                                    )}
+    })
 
     return filtered
 }
