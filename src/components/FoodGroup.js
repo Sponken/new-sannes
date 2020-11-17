@@ -8,7 +8,8 @@ const FoodGroup = ({
                    }) => {
     const foodCards = foods.map(f => <FoodCard key={f.title} title={f.title} price={f.price}
                                                ingredients={f.ingredients}/>)
-    return <div style={{
+
+    return foods.length === 0 ? null : <div style={{
         marginLeft: "2vw",
         marginRight: "2vw",
         marginTop: "20px",

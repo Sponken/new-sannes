@@ -6,7 +6,7 @@ export const testFood = {
     ingredients: ["Skinka", "lök", "jalapeño", "kyckling", "köttfärs", "bacon", "oxfilé", "mozzarellaost", "stark vitlökssås"]
 }
 
-export const pref = ["Veg", "Stark", "Inbakad"]
+export const pref = ["veg", "stark", "inbakad"]
 
 let getNonPizzaGroups = () => {
     let output = []

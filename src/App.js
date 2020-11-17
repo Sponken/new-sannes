@@ -13,8 +13,8 @@ const App = () => {
     const [chosenFoodGroups, setChosenFoodGroups] = useState(groupTitles)
     const [foodPref, setFoodPref] = useState([]);
 
-    let filteredNonPizzaGroups = filterGroups(nonPizzaGroups, chosenFoodGroups, maxPrice, wantedIngredients)
-    let filteredPizzaGroups = filterGroups(pizzaGroups, chosenFoodGroups, maxPrice, wantedIngredients)
+    let filteredNonPizzaGroups = filterGroups(nonPizzaGroups, chosenFoodGroups, maxPrice, wantedIngredients, unwantedIngredients, foodPref)
+    let filteredPizzaGroups = filterGroups(pizzaGroups, chosenFoodGroups, maxPrice, wantedIngredients, unwantedIngredients, foodPref)
 
     return <DigitProviders>
         <DigitHeader
@@ -37,16 +37,14 @@ const App = () => {
     </DigitProviders>
 }
 
-
-let filterGroups = (foodGroups, chosenFoodGroups, maxPrice, wantedIngredients) => {
+let filterGroups = (foodGroups, chosenFoodGroups, maxPrice, wantedIngredients, unwantedIngredients, foodPref) => {
     let filtered = []
 
-    // Nedan trollar bort pizza.
-    filtered = foodGroups.filter(g => {
-        return chosenFoodGroups.includes(g.groupTitle)
+    filtered = foodGroups.filter(f => {
+        // Need to check that pizza is a substring of pizzagrupp.
+        // Hence weird looking line below.
+        return chosenFoodGroups.some(c => f.groupTitle.includes(c))
     })
-
-    console.log(filtered)
 
     if (maxPrice !== "")
         filtered = filtered.map(g => {
@@ -59,17 +57,35 @@ let filterGroups = (foodGroups, chosenFoodGroups, maxPrice, wantedIngredients) =
             }
         })
 
-    //TODO: Continue filtrering, filtrera i menu?
-
-    /*filtered = filtered.map(g => {
+    filtered = filtered.map(g => {
         return {
             groupTitle: g.groupTitle,
             foods: g.foods.filter(f => {
-                console.log(f.ingredients)
                 return wantedIngredients.every(i => f.ingredients.includes(i))
             })
         }
-    })*/
+    })
+
+    filtered = filtered.map(g => {
+        return {
+            groupTitle: g.groupTitle,
+            foods: g.foods.filter(f => {
+                return unwantedIngredients.every(i => !f.ingredients.includes(i))
+            })
+        }
+    })
+
+
+    filtered = filtered.map(g => {
+        return {
+            groupTitle: g.groupTitle,
+            foods: g.foods.filter(f => {
+                return (foodPref.includes("veg") && f.veg || !foodPref.includes("veg")) &&
+                    (foodPref.includes("stark") && f.spicy || !foodPref.includes("stark")) &&
+                    (foodPref.includes("inbakad") && f.type === "baked" || !foodPref.includes("inbakad"))
+            })
+        }
+    })
 
 
     return filtered
