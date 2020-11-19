@@ -7,14 +7,16 @@ import {groupTitles, pref, testFood, nonPizzaGroups, pizzaGroups} from "./mockDa
 const App = () => {
     const [maxPrice, setMaxPrice] = useState("");
 
+    const [searchTerm, setSearchTerm] = useState("")
+
     const [wantedIngredients, setWantedIngredients] = useState([]);
     const [unwantedIngredients, setUnwantedIngredients] = useState([]);
 
     const [chosenFoodGroups, setChosenFoodGroups] = useState(groupTitles)
     const [foodPref, setFoodPref] = useState([]);
 
-    let filteredNonPizzaGroups = filterGroups(nonPizzaGroups, chosenFoodGroups, maxPrice, wantedIngredients, unwantedIngredients, foodPref)
-    let filteredPizzaGroups = filterGroups(pizzaGroups, chosenFoodGroups, maxPrice, wantedIngredients, unwantedIngredients, foodPref)
+    let filteredNonPizzaGroups = filterGroups(nonPizzaGroups, chosenFoodGroups, maxPrice, wantedIngredients, unwantedIngredients, foodPref, searchTerm)
+    let filteredPizzaGroups = filterGroups(pizzaGroups, chosenFoodGroups, maxPrice, wantedIngredients, unwantedIngredients, foodPref, searchTerm)
 
     return <DigitProviders>
         <DigitHeader
@@ -26,7 +28,8 @@ const App = () => {
                             chosenFoodPref={{value: foodPref, setter: setFoodPref}} ingredients={testFood.ingredients}
                             maxPrice={{value: maxPrice, setter: setMaxPrice}}
                             wantedIngredients={{value: wantedIngredients, setter: setWantedIngredients}}
-                            unwantedIngredients={{value: unwantedIngredients, setter: setUnwantedIngredients}}/>
+                            unwantedIngredients={{value: unwantedIngredients, setter: setUnwantedIngredients}}
+                            searchTerm = {{value: searchTerm, setter: setSearchTerm}}/>
                     {chosenFoodGroups.includes("Pizza")
                         ? <Menu foodGroups={filteredPizzaGroups}/>
                         : null}
@@ -37,7 +40,7 @@ const App = () => {
     </DigitProviders>
 }
 
-let filterGroups = (foodGroups, chosenFoodGroups, maxPrice, wantedIngredients, unwantedIngredients, foodPref) => {
+let filterGroups = (foodGroups, chosenFoodGroups, maxPrice, wantedIngredients, unwantedIngredients, foodPref, searchTerm) => {
     let filtered = []
 
     filtered = foodGroups.filter(f => {
@@ -46,11 +49,20 @@ let filterGroups = (foodGroups, chosenFoodGroups, maxPrice, wantedIngredients, u
         return chosenFoodGroups.some(c => f.groupTitle.includes(c))
     })
 
-    if (maxPrice !== "")
-        filtered = filtered.map(g => {
-            return {
-                groupTitle: g.groupTitle,
-                foods: g.foods.filter(foodItem => {
+    filtered = filtered.map( g => {
+        return {
+            groupTitle: g.groupTitle,
+            foods: g.foods.filter(foodItem => {
+                return foodItem.title.toLowerCase().includes(searchTerm.toLowerCase())
+            })
+        }
+    })
+
+        if(maxPrice != "")
+            filtered = filtered.map(g => {
+                return {
+                    groupTitle: g.groupTitle,
+                    foods: g.foods.filter(foodItem => {
                         return foodItem.price <= maxPrice
                     }
                 )
@@ -80,9 +92,14 @@ let filterGroups = (foodGroups, chosenFoodGroups, maxPrice, wantedIngredients, u
         return {
             groupTitle: g.groupTitle,
             foods: g.foods.filter(f => {
-                return (foodPref.includes("veg") && f.veg || !foodPref.includes("veg")) &&
-                    (foodPref.includes("stark") && f.spicy || !foodPref.includes("stark")) &&
-                    (foodPref.includes("inbakad") && f.type === "baked" || !foodPref.includes("inbakad"))
+                if (foodPref.includes("veg") && !f.veg)
+                    return false
+                if (foodPref.includes("stark") && !f.spicy)
+                    return false
+                if (foodPref.includes("inbakad") && f.type === "baked")
+                    return false
+
+                return true
             })
         }
     })
