@@ -3,6 +3,7 @@ import Filter from "./components/Filter";
 import {DigitHeader, DigitProviders, DigitLayout} from "@cthit/react-digit-components";
 import Menu from "./components/Menu";
 import {groupTitles, pref, testFood, nonPizzaGroups, pizzaGroups} from "./mockData";
+import './styles.css'
 
 const App = () => {
     const [maxPrice, setMaxPrice] = useState("");
@@ -22,7 +23,7 @@ const App = () => {
         <DigitHeader
             title="Sannes"
             renderMain={() => (
-                <DigitLayout.Column alignItems='center'>
+                <DigitLayout.Column id="everything">
                     <Filter groupNames={groupTitles}
                             chosenFoodGroups={{value: chosenFoodGroups, setter: setChosenFoodGroups}} prefNames={pref}
                             chosenFoodPref={{value: foodPref, setter: setFoodPref}} ingredients={testFood.ingredients}

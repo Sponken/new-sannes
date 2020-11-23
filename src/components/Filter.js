@@ -20,7 +20,7 @@ const Filter = ({
                     searchTerm
                 }) => {
 
-    return <DigitDesign.Card size={{width: '600px'}}>
+    return <DigitDesign.Card id="bigCard" >
         <DigitDesign.CardBody>
             <DigitTextField value ={searchTerm.value} onChange= {e => searchTerm.setter(e.target.value)} upperLabel="Sök på artikel"/>
         </DigitDesign.CardBody>

@@ -9,16 +9,11 @@ const FoodGroup = ({
     const foodCards = foods.map(f => <FoodCard key={f.title} title={f.title} price={f.price}
                                                ingredients={f.ingredients}/>)
 
-    return foods.length === 0 ? null : <div style={{
-        marginLeft: "2vw",
-        marginRight: "2vw",
-        marginTop: "20px",
-        width: "95vw",
-    }}>
-        <DigitText.Heading4 text={groupTitle}/>
-        <DigitLayout.UniformGrid margin="20px" minItemWidth="300px" justifyItems="center">
+    return foods.length === 0 ? null : <div id="foodGroup">
+        <DigitText.Heading4 text={groupTitle} />
+        <DigitLayout.Grid id="foodGrid" columns={`repeat(auto-fill, 300px)`} >
             {foodCards}
-        </DigitLayout.UniformGrid>
+        </DigitLayout.Grid>
     </div>
 }
 
