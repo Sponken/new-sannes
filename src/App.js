@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Filter from "./components/Filter";
 import {DigitHeader, DigitProviders, DigitLayout} from "@cthit/react-digit-components";
 import Menu from "./components/Menu";
-import {groupTitles, pref, testFood, nonPizzaGroups, pizzaGroups} from "./mockData";
+import {groupTitles, pref, nonPizzaGroups, pizzaGroups, ingredients} from "./mockData";
 import './styles.css'
 
 const App = () => {
@@ -26,7 +26,7 @@ const App = () => {
                 <DigitLayout.Column id="everything">
                     <Filter groupNames={groupTitles}
                             chosenFoodGroups={{value: chosenFoodGroups, setter: setChosenFoodGroups}} prefNames={pref}
-                            chosenFoodPref={{value: foodPref, setter: setFoodPref}} ingredients={testFood.ingredients}
+                            chosenFoodPref={{value: foodPref, setter: setFoodPref}} ingredients={ingredients}
                             maxPrice={{value: maxPrice, setter: setMaxPrice}}
                             wantedIngredients={{value: wantedIngredients, setter: setWantedIngredients}}
                             unwantedIngredients={{value: unwantedIngredients, setter: setUnwantedIngredients}}

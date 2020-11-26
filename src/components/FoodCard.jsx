@@ -15,16 +15,20 @@ const FoodCard = ({
         id = "baked"
     }
 
-    return <DigitDesign.Card size={{width: "350px", height: "240px"}} id={id}>
-        <DigitDesign.CardBody>
+    return <DigitDesign.Card className="foodCard"  >
+        <DigitDesign.CardBody className={"foodCard " + id}>
             <DigitLayout.Row bottomPadding='20px' justifyContent="space-between">
-                <DigitText.Heading5 text={food.title} bold/>
+                <DigitText.Heading5 text={capitalizeFirstLetter(food.title)} bold/>
                 <DigitText.Heading5 text={food.price + "kr"} bold/>
             </DigitLayout.Row>
-            <DigitMarkdown markdownSource={food.ingredients === undefined ? "" : food.ingredients.join(", ")}/>
+            <DigitMarkdown markdownSource={food.ingredients === undefined ? "" : capitalizeFirstLetter(food.ingredients.join(", "))}/>
         </DigitDesign.CardBody>
     </DigitDesign.Card>
 
+}
+
+const capitalizeFirstLetter = text => {
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
 }
 
 export default FoodCard;

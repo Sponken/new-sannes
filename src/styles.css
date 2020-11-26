@@ -2,15 +2,15 @@ body{
     background-color: #f7f7f7;
 }
 
-#veg{
+.veg{
     background-color: lightgreen;
 }
 
-#spicy{
+.spicy{
     background-color: coral;
 }
 
-#baked{
+.baked{
     background-color: beige;
 }
 
@@ -31,3 +31,11 @@ body{
     gap: 35px;
 }
 
+.foodCard{
+    height: 240px;
+}
+
+.foodCard *{
+    font-size: large;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
