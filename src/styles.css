@@ -1,0 +1,21 @@
+body{
+    background-color: #f7f7f7;
+
+}
+
+#everything{
+    align-items: center;
+    width: 100vw;
+    }
+
+#bigCard{
+    width: 600px;
+}
+
+#foodGroup{
+    width: 95vw;
+}
+
+#foodGrid{
+    gap: 35px;
+}
