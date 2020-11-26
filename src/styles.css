@@ -1,6 +1,17 @@
 body{
     background-color: #f7f7f7;
+}
 
+#veg{
+    background-color: lightgreen;
+}
+
+#spicy{
+    background-color: coral;
+}
+
+#baked{
+    background-color: beige;
 }
 
 #everything{
@@ -19,3 +30,4 @@ body{
 #foodGrid{
     gap: 35px;
 }
+

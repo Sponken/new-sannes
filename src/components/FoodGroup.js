@@ -6,12 +6,11 @@ const FoodGroup = ({
                        foods,
                        groupTitle,
                    }) => {
-    const foodCards = foods.map(f => <FoodCard key={f.title} title={f.title} price={f.price}
-                                               ingredients={f.ingredients}/>)
+    const foodCards = foods.map(f => <FoodCard key={f.title} food={f}/>)
 
     return foods.length === 0 ? null : <div id="foodGroup">
         <DigitText.Heading4 text={groupTitle} />
-        <DigitLayout.Grid id="foodGrid" columns={`repeat(auto-fill, 300px)`} >
+        <DigitLayout.Grid id="foodGrid" columns={`repeat(auto-fill, 350px)`} >
             {foodCards}
         </DigitLayout.Grid>
     </div>

@@ -2,17 +2,26 @@ import React from 'react'
 import {DigitDesign, DigitLayout, DigitText, DigitMarkdown} from "@cthit/react-digit-components";
 
 const FoodCard = ({
-                      title,
-                      price,
-                      ingredients
+                      food
                   }) => {
-    return <DigitDesign.Card size={{width: "300px", height: "240px"}}>
+
+    let id = ""
+
+    if (food.veg) {
+        id = "veg"
+    } else if (food.spicy) {
+        id = "spicy"
+    } else if (food.type === "baked") {
+        id = "baked"
+    }
+
+    return <DigitDesign.Card size={{width: "350px", height: "240px"}} id={id}>
         <DigitDesign.CardBody>
             <DigitLayout.Row bottomPadding='20px' justifyContent="space-between">
-                <DigitText.Heading5 text={title} bold/>
-                <DigitText.Heading5 text={price + "kr"} bold/>
+                <DigitText.Heading5 text={food.title} bold/>
+                <DigitText.Heading5 text={food.price + "kr"} bold/>
             </DigitLayout.Row>
-            <DigitMarkdown markdownSource={ingredients === undefined ? "" : ingredients.join(", ")}/>
+            <DigitMarkdown markdownSource={food.ingredients === undefined ? "" : food.ingredients.join(", ")}/>
         </DigitDesign.CardBody>
     </DigitDesign.Card>
 
