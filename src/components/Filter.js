@@ -20,9 +20,21 @@ const Filter = ({
                     searchTerm
                 }) => {
 
+    const resetFilter = () => {
+    chosenFoodGroups.setter(groupNames)
+    chosenFoodPref.setter([])
+    maxPrice.setter("")
+    wantedIngredients.setter([])
+    unwantedIngredients.setter([])
+    searchTerm.setter("")
+    }
+
     return <DigitDesign.Card id="bigCard" >
         <DigitDesign.CardBody>
-            <DigitTextField value ={searchTerm.value} onChange= {e => searchTerm.setter(e.target.value)} upperLabel="Sök på artikel"/>
+            <DigitLayout.Row style={{display: "flex", justifyContent: "space-between" }}>
+                <DigitTextField value ={searchTerm.value} onChange= {e => searchTerm.setter(e.target.value)} upperLabel="Sök på artikel"/>
+                <DigitButton text="Rensa" secondary raised outlined onClick={() => resetFilter()}/>
+            </DigitLayout.Row>
         </DigitDesign.CardBody>
         <DigitDesign.CardBody>
             <DigitText.Heading5 text="Matgrupp"/>
@@ -74,5 +86,7 @@ const IngredientList = ({ingredients, chosenIngredients, text}) => {
                                             onChange={e => chosenIngredients.setter(e.target.value)}
                                             upperLabel={text}/>
 }
+
+
 
 export default Filter

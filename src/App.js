@@ -1,12 +1,16 @@
 import React, {useState} from 'react'
 import Filter from "./components/Filter";
-import {DigitHeader, DigitProviders, DigitLayout} from "@cthit/react-digit-components";
+import {DigitHeader, DigitProviders, DigitLayout, DigitSelect} from "@cthit/react-digit-components";
 import Menu from "./components/Menu";
 import {groupTitles, pref, nonPizzaGroups, pizzaGroups, ingredients} from "./mockData";
 import './styles.css'
 
 const App = () => {
+    const sortBy = { groups: "Grupper", alphabeticallyAsc: "Alfabetisk stigande",alphabeticallyDec: "Alfabetisk fallande", priceAsc: "Pris stigande",priceDec: "Pris fallande"}
+
     const [maxPrice, setMaxPrice] = useState("");
+
+    const [chosenSort, setChosenSort] = useState("groups")
 
     const [searchTerm, setSearchTerm] = useState("")
 
@@ -31,6 +35,7 @@ const App = () => {
                             wantedIngredients={{value: wantedIngredients, setter: setWantedIngredients}}
                             unwantedIngredients={{value: unwantedIngredients, setter: setUnwantedIngredients}}
                             searchTerm = {{value: searchTerm, setter: setSearchTerm}}/>
+                    <DigitSelect valueToTextMap={sortBy} value={chosenSort} onChange={e => setChosenSort(e.target.value)}/>
                     {chosenFoodGroups.includes("Pizza")
                         ? <Menu foodGroups={filteredPizzaGroups}/>
                         : null}
@@ -40,6 +45,14 @@ const App = () => {
         />
     </DigitProviders>
 }
+
+
+const sortDropDown = () => {
+
+
+    return 
+}
+
 
 let filterGroups = (foodGroups, chosenFoodGroups, maxPrice, wantedIngredients, unwantedIngredients, foodPref, searchTerm) => {
     let filtered = []
