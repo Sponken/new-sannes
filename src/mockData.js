@@ -25,6 +25,10 @@ export const pizzaGroups = Object.entries(foods.pizzas).map(([key, value]) => {
     return {groupTitle: "Pizzagrupp " + key, foods: value}
 })
 
+
+export const foodGroups = [...pizzaGroups, ...nonPizzaGroups]
+
+
 export const groupTitles = ["Pizza",...getNonPizzaGroups().map(g => g.groupTitle)]
 
 
@@ -39,7 +43,6 @@ const getAllIngredients = () =>{
 
     pizzaGroups.map(group => group.foods.map(food => {
         food.ingredients.forEach(ingredient => {
-            console.log(ingredients)
             ingredients.add(ingredient)
         });
     }))

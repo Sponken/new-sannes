@@ -2,11 +2,11 @@ import React, {useState} from 'react'
 import Filter from "./components/Filter";
 import {DigitHeader, DigitProviders, DigitLayout, DigitSelect} from "@cthit/react-digit-components";
 import Menu from "./components/Menu";
-import {groupTitles, pref, nonPizzaGroups, pizzaGroups, ingredients} from "./mockData";
+import {groupTitles, pref, nonPizzaGroups, pizzaGroups, foodGroups, ingredients} from "./mockData";
 import './styles.css'
 
 const App = () => {
-    const sortBy = { groups: "Grupper", alphabeticallyAsc: "Alfabetisk stigande",alphabeticallyDec: "Alfabetisk fallande", priceAsc: "Pris stigande",priceDec: "Pris fallande"}
+    const sortBy = { groups: "Grupper", priceAsc: "Pris stigande",priceDec: "Pris fallande"}
 
     const [maxPrice, setMaxPrice] = useState("");
 
@@ -20,8 +20,8 @@ const App = () => {
     const [chosenFoodGroups, setChosenFoodGroups] = useState(groupTitles)
     const [foodPref, setFoodPref] = useState([]);
 
-    let filteredNonPizzaGroups = filterGroups(nonPizzaGroups, chosenFoodGroups, maxPrice, wantedIngredients, unwantedIngredients, foodPref, searchTerm)
-    let filteredPizzaGroups = filterGroups(pizzaGroups, chosenFoodGroups, maxPrice, wantedIngredients, unwantedIngredients, foodPref, searchTerm)
+    let filteredFoodGroups = filterGroups(foodGroups, chosenFoodGroups, maxPrice, wantedIngredients, unwantedIngredients, foodPref, searchTerm, chosenSort)
+    
 
     return <DigitProviders>
         <DigitHeader
@@ -35,11 +35,10 @@ const App = () => {
                             wantedIngredients={{value: wantedIngredients, setter: setWantedIngredients}}
                             unwantedIngredients={{value: unwantedIngredients, setter: setUnwantedIngredients}}
                             searchTerm = {{value: searchTerm, setter: setSearchTerm}}/>
-                    <DigitSelect valueToTextMap={sortBy} value={chosenSort} onChange={e => setChosenSort(e.target.value)}/>
-                    {chosenFoodGroups.includes("Pizza")
-                        ? <Menu foodGroups={filteredPizzaGroups}/>
-                        : null}
-                    <Menu foodGroups={filteredNonPizzaGroups}/>
+                    <DigitSelect valueToTextMap={sortBy} value={chosenSort} onChange={e => {
+                        setChosenSort(e.target.value)
+                    }}/>
+                    <Menu foodGroups={filteredFoodGroups}/>
                 </DigitLayout.Column>
             )}
         />
@@ -47,14 +46,24 @@ const App = () => {
 }
 
 
-const sortDropDown = () => {
+const sortDropDown = (filtered, sortAsc) => {
 
+    let sortedFoods = {groupTitle: "Resultat:", foods: []}
 
-    return 
+    filtered.forEach(group => {
+        sortedFoods.foods.push(...group.foods)
+    });
+
+    sortedFoods.foods.sort((f1, f2) => f1.price - f2.price)
+
+    if (!sortAsc)
+        sortedFoods.foods.reverse()
+    return [sortedFoods]
+
 }
 
 
-let filterGroups = (foodGroups, chosenFoodGroups, maxPrice, wantedIngredients, unwantedIngredients, foodPref, searchTerm) => {
+let filterGroups = (foodGroups, chosenFoodGroups, maxPrice, wantedIngredients, unwantedIngredients, foodPref, searchTerm, sortBy) => {
     let filtered = []
 
     filtered = foodGroups.filter(f => {
@@ -119,7 +128,10 @@ let filterGroups = (foodGroups, chosenFoodGroups, maxPrice, wantedIngredients, u
     })
 
 
-    return filtered
+    if (sortBy === "groups")
+        return filtered
+    return sortDropDown(filtered, sortBy === "priceAsc")
+
 }
 
 
