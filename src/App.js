@@ -1,12 +1,12 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Filter from "./components/Filter";
-import {DigitHeader, DigitProviders, DigitLayout, DigitSelect} from "@cthit/react-digit-components";
+import { DigitHeader, DigitProviders, DigitLayout, DigitSelect } from "@cthit/react-digit-components";
 import Menu from "./components/Menu";
-import {groupTitles, pref, nonPizzaGroups, pizzaGroups, foodGroups, ingredients} from "./mockData";
+import { groupTitles, pref, nonPizzaGroups, pizzaGroups, foodGroups, ingredients } from "./mockData";
 import './styles.css'
 
 const App = () => {
-    const sortBy = { groups: "Grupper", priceAsc: "Pris stigande",priceDec: "Pris fallande"}
+    const sortBy = { groups: "Grupper", priceAsc: "Pris stigande", priceDec: "Pris fallande" }
 
     const [maxPrice, setMaxPrice] = useState("");
 
@@ -21,7 +21,7 @@ const App = () => {
     const [foodPref, setFoodPref] = useState([]);
 
     let filteredFoodGroups = filterGroups(foodGroups, chosenFoodGroups, maxPrice, wantedIngredients, unwantedIngredients, foodPref, searchTerm, chosenSort)
-    
+
 
     return <DigitProviders>
         <DigitHeader
@@ -29,16 +29,16 @@ const App = () => {
             renderMain={() => (
                 <DigitLayout.Column id="everything">
                     <Filter groupNames={groupTitles}
-                            chosenFoodGroups={{value: chosenFoodGroups, setter: setChosenFoodGroups}} prefNames={pref}
-                            chosenFoodPref={{value: foodPref, setter: setFoodPref}} ingredients={ingredients}
-                            maxPrice={{value: maxPrice, setter: setMaxPrice}}
-                            wantedIngredients={{value: wantedIngredients, setter: setWantedIngredients}}
-                            unwantedIngredients={{value: unwantedIngredients, setter: setUnwantedIngredients}}
-                            searchTerm = {{value: searchTerm, setter: setSearchTerm}}/>
+                        chosenFoodGroups={{ value: chosenFoodGroups, setter: setChosenFoodGroups }} prefNames={pref}
+                        chosenFoodPref={{ value: foodPref, setter: setFoodPref }} ingredients={ingredients}
+                        maxPrice={{ value: maxPrice, setter: setMaxPrice }}
+                        wantedIngredients={{ value: wantedIngredients, setter: setWantedIngredients }}
+                        unwantedIngredients={{ value: unwantedIngredients, setter: setUnwantedIngredients }}
+                        searchTerm={{ value: searchTerm, setter: setSearchTerm }} />
                     <DigitSelect valueToTextMap={sortBy} value={chosenSort} onChange={e => {
                         setChosenSort(e.target.value)
-                    }}/>
-                    <Menu foodGroups={filteredFoodGroups}/>
+                    }} />
+                    <Menu foodGroups={filteredFoodGroups} />
                 </DigitLayout.Column>
             )}
         />
@@ -48,7 +48,7 @@ const App = () => {
 
 const sortDropDown = (filtered, sortAsc) => {
 
-    let sortedFoods = {groupTitle: "Resultat:", foods: []}
+    let sortedFoods = { groupTitle: "Resultat:", foods: [] }
 
     filtered.forEach(group => {
         sortedFoods.foods.push(...group.foods)
@@ -62,54 +62,16 @@ const sortDropDown = (filtered, sortAsc) => {
 
 }
 
+// const filteredGroups = React.useMemo(()=> )
 
 let filterGroups = (foodGroups, chosenFoodGroups, maxPrice, wantedIngredients, unwantedIngredients, foodPref, searchTerm, sortBy) => {
     let filtered = []
 
-    filtered = foodGroups.filter(f => {
+    filtered = foodGroups.filter(g => {
         // Need to check that pizza is a substring of pizzagrupp.
         // Hence weird looking line below.
-        return chosenFoodGroups.some(c => f.groupTitle.includes(c))
+        return chosenFoodGroups.some(c => g.groupTitle.includes(c))
     })
-
-    filtered = filtered.map( g => {
-        return {
-            groupTitle: g.groupTitle,
-            foods: g.foods.filter(foodItem => {
-                return foodItem.title.toLowerCase().includes(searchTerm.toLowerCase())
-            })
-        }
-    })
-
-        if(maxPrice != "")
-            filtered = filtered.map(g => {
-                return {
-                    groupTitle: g.groupTitle,
-                    foods: g.foods.filter(foodItem => {
-                        return foodItem.price <= maxPrice
-                    }
-                )
-            }
-        })
-
-    filtered = filtered.map(g => {
-        return {
-            groupTitle: g.groupTitle,
-            foods: g.foods.filter(f => {
-                return wantedIngredients.every(i => f.ingredients.includes(i))
-            })
-        }
-    })
-
-    filtered = filtered.map(g => {
-        return {
-            groupTitle: g.groupTitle,
-            foods: g.foods.filter(f => {
-                return unwantedIngredients.every(i => !f.ingredients.includes(i))
-            })
-        }
-    })
-
 
     filtered = filtered.map(g => {
         return {
@@ -122,7 +84,13 @@ let filterGroups = (foodGroups, chosenFoodGroups, maxPrice, wantedIngredients, u
                 if (foodPref.includes("inbakad") && f.type !== "baked")
                     return false
 
-                return true
+                if (maxPrice != "" && f.price > maxPrice)
+                    return false
+
+                return wantedIngredients.every(i => f.ingredients.includes(i))
+                    && unwantedIngredients.every(i => !f.ingredients.includes(i))
+                    && f.title.toLowerCase().includes(searchTerm.toLowerCase())
+
             })
         }
     })
