@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Filter from "./components/Filter";
 import { DigitHeader, DigitProviders, DigitLayout, DigitSelect } from "@cthit/react-digit-components";
 import Menu from "./components/Menu";
-import { groupTitles, pref, nonPizzaGroups, pizzaGroups, foodGroups, ingredients } from "./mockData";
+import { groupTitles, pref, foodGroups, ingredients } from "./dataManagement";
 import './styles.css'
 
 const App = () => {
@@ -19,6 +19,7 @@ const App = () => {
 
     const [chosenFoodGroups, setChosenFoodGroups] = useState(groupTitles)
     const [foodPref, setFoodPref] = useState([]);
+    
 
     let filteredFoodGroups = filterGroups(foodGroups, chosenFoodGroups, maxPrice, wantedIngredients, unwantedIngredients, foodPref, searchTerm, chosenSort)
 
@@ -62,7 +63,6 @@ const sortDropDown = (filtered, sortAsc) => {
 
 }
 
-// const filteredGroups = React.useMemo(()=> )
 
 let filterGroups = (foodGroups, chosenFoodGroups, maxPrice, wantedIngredients, unwantedIngredients, foodPref, searchTerm, sortBy) => {
     let filtered = []

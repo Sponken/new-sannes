@@ -84,7 +84,7 @@
     "kebabkött": "kebab",
     "kebab": "kebabkött"
   },
-  "pizzas": {
+  "Pizza": {
     "1": [
       {
         "title": "margherita",
@@ -1394,7 +1394,7 @@
       }
     ]
   },
-  "kebab rolls": [
+  "Rullar": [
     {
       "title": "kebabrulle standard",
       "type": "roll",
@@ -1473,7 +1473,7 @@
       "price": 90
     }
     ],
-  "hamburgers": [
+  "Hamburgare": [
     {
       "title": "amerikansk salladsburgare",
       "type": "hamburger",
@@ -1557,7 +1557,7 @@
       "price": 90
     }
   ],
-  "roasts": [
+  "Tallrikar": [
     {
       "title": "kebabtallrik",
       "type": "plate",
@@ -1633,7 +1633,7 @@
       "price": 40
     }
   ],
-  "pastas": [
+  "Pasta": [
     {
       "title": "carbonara",
       "type": "pasta",
@@ -1718,7 +1718,7 @@
       "price": 105
     }
   ],
-  "salads": [
+  "Sallad": [
     {
       "title": "amerikansk sallad",
       "type": "salad",
@@ -1821,7 +1821,7 @@
       "price": 90
     }
   ],
-  "lasagna": [
+  "Lasagne": [
    {
       "title": "lasagne al forno",
       "type": "lasagna",
