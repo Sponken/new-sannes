@@ -10,7 +10,7 @@ const FoodGroup = ({
 
     return foods.length === 0 ? null : <div id="foodGroup">
         <DigitText.Heading4 text={groupTitle} />
-        <DigitLayout.Grid id="foodGrid" columns={`repeat(auto-fill, 350px)`} >
+        <DigitLayout.Grid id="foodGrid" columns={`repeat(auto-fill, 340px)`} >
             {foodCards}
         </DigitLayout.Grid>
     </div>
