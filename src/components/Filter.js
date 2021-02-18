@@ -28,6 +28,7 @@ const Filter = ({
         unwantedIngredients.setter([])
         searchTerm.setter("")
         setSearchQuery("")
+        setPriceQuery("")
     }
 
     const [searchQuery, setSearchQuery] = useState("");
