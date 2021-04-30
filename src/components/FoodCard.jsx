@@ -4,6 +4,7 @@ import {ImFire as hotIcon, ImGift} from 'react-icons/im'
 import calzone from '../../public/calzone.png'
 import hot from '../../public/hot.png'
 import veg from '../../public/carrot.png'
+import peanut from '../../public/peanut.png'
 
 const FoodCard = ({
                       food
@@ -22,6 +23,9 @@ const FoodCard = ({
     } else if (food.type === "baked") {
         id = "baked"
         symbol = calzone
+    } else if (food.peanut){
+        id = "peanut"
+        symbol = peanut
     }
 
 

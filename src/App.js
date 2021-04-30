@@ -83,7 +83,8 @@ let filterGroups = (foodGroups, chosenFoodGroups, maxPrice, wantedIngredients, u
                     return false
                 if (foodPref.includes("inbakad") && f.type !== "baked")
                     return false
-
+                if (foodPref.includes("utan jordnötter") && f.peanut)
+                    return false
                 if (maxPrice != "" && f.price > maxPrice)
                     return false
 

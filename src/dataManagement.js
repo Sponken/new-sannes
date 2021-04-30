@@ -33,7 +33,7 @@ const getAllIngredients = () =>{
     return [...ingredients].sort()
 }
 
-export const pref = ["veg", "stark", "inbakad"]
+export const pref = ["veg", "stark", "inbakad", "utan jordnötter"]
 
 export const foodGroups = [...pizzaGroups, ...getNonPizzaGroups()]
 

@@ -1,57 +1,62 @@
-body{
-    background-color: #f7f7f7;
-    padding: 0;
-    margin: 0;
+body {
+  background-color: #f7f7f7;
+  padding: 0;
+  margin: 0;
 }
 
-.veg{
-    background-color: #daffda;
-    border-radius: 4px;
+.veg {
+  background-color: #daffda;
+  border-radius: 4px;
 }
 
-.spicy{
-    background-color: #ffe7e7;
-    border-radius: 4px;
+.spicy {
+  background-color: #ffe7e7;
+  border-radius: 4px;
 }
 
-.baked{
-    background-color: #fbf0e4;
-    border-radius: 4px;
+.baked {
+  background-color: #fbf0e4;
+  border-radius: 4px;
 }
 
-#everything{
-    align-items: center;
-    width: 100vw;
-    }
-
-#bigCard{
-    width: 600px;
+.peanut {
+  background-color: #e5f6ff;
+  border-radius: 4px;
 }
 
-#foodGroup{
-    max-width: 1500px;
-    width: 95vw;
-    margin-bottom: 50px;
+#everything {
+  align-items: center;
+  width: 100vw;
 }
 
-#foodGrid{
-    gap: 35px;
-    margin-top: 10px;
-    grid-auto-rows: minmax(200px, 1fr);
-    justify-content: center;
+#bigCard {
+  width: 600px;
 }
 
-.foodCard *{
-    font-size: large;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+#foodGroup {
+  max-width: 1500px;
+  width: 95vw;
+  margin-bottom: 50px;
 }
 
-.ingredientText{
-    flex-grow: 1;
+#foodGrid {
+  gap: 35px;
+  margin-top: 10px;
+  grid-auto-rows: minmax(200px, 1fr);
+  justify-content: center;
+}
+
+.foodCard * {
+  font-size: large;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.ingredientText {
+  flex-grow: 1;
 }
 
 .symbol {
-    height: 40px;
-    align-self: flex-end;
-    justify-self: center;
+  height: 40px;
+  align-self: flex-end;
+  justify-self: center;
 }
